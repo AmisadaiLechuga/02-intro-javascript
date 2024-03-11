@@ -1,13 +1,44 @@
-const apiKey = 'phzrJUN1aivPsHx2ilTh0vznzPljVzMZ';
+//Pormesas
 
-const peticion = fetch(`https://api.giphy.com/v1/gifs/random?api_key=${ apiKey }`)
+//const getImagenPromsa = () => {
+//  return new Promise ((resolve, reject) => {
+//    resolve('http://asafasdfasdfsdf.com')
+//  })
+//}
 
-peticion.then( resp => resp.json() )
-.then( ({ data }) => {
-    const { url } = data.images.original;
-    const img = document.createElement('img');
-    img.src = url;
+//getImagenPromsa().then( console.log )
 
-    document.body.append( img );
-} )
-.catch( console.warm );
+///-------------------Ejmplo 1 con async-------------------
+const getImagen = async() => {
+    return 'http://asafasdfasdfsdf.com';
+}
+
+getImagen().then( console.log );
+
+///--------------------------------------------------------
+
+
+///-------------------Ejemplo 2 con async y await-----------
+
+const getImagen2 = async() => {
+
+    try {
+        
+        const apiKey = 'phzrJUN1aivPsHx2ilTh0vznzPljVzMZ';
+        const resp = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${ apiKey }`);
+        const { data } = await resp.json();
+        const { url } = data.images.original;
+        const img = document.createElement('img');
+        img.src = url;
+        document.body.append( img );
+
+
+    } catch (error) {
+        console.error(error)
+    }
+
+
+    
+}
+
+getImagen2();
